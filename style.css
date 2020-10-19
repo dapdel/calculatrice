@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+section {
+  width: 320px;
+  background-color: gray;
+  padding: 20px;
+  height: 320px;
+  margin: auto;
+  margin-top: 50px;
+}
+#ecran {
+  width: 270px;
+  height: 60px;
+  background-color: white;
+}
+#boutons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+#siglesMathematiques {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 80px;
+  height: 200px;
+  margin-top: 25px;
+}
+button {
+  height: 40px;
+  width: 60px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.operations {
+  background-color: green;
+  color: white;
+}
+#boutonsChiffres {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 240px;
+  height: 210px;
+  margin-top: 25px;
+}
+
+.nombre {
+  background-color: blue;
+  color: white;
+}
+#particuliers {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 240px;
+  height: 60px;
+}
+.clear {
+  background-color: yellow;
+}
+.egal {
+  background-color: orange;
+}
