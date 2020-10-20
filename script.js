@@ -27,6 +27,7 @@ var particuliers = document.getElementById("particuliers");
 particuliers.innerHTML = parHTML;
 
 // transformation array de nombres de type string vers une array de nombres de type number
+// utilisée dans la fonction calcul
 function transform(arrayTypeString) {
   var arrayTypeNumber = [];
   for (var chiffre of arrayTypeString) {
@@ -41,7 +42,7 @@ function transform(arrayTypeString) {
   return (nombre);
 }
 
-// fonction qui calcule
+// fonction qui calcule, utilisée dans la fonction Pemdas
 function calculElemeantaire(nombre1, operation, nombre2) {
   var reponse;
   switch (operation) {
@@ -123,11 +124,13 @@ function pemdas(array) {
   console.log(calculFait);
   return calculFait;
 }
+/*
 var test6 = [136, "*", 45, "-", 125, "*", 223, "/", 12, "+", 45];
 var test7 = test6.indexOf("*");
 console.log(test7);
 var test8 = pemdas(test6);
 console.log(test8);
+*/
 
 // calcul d'un array type string
 function calcul(arrayTypeString) {
@@ -152,11 +155,12 @@ function calcul(arrayTypeString) {
   arraytransforme.pop();
   return arraytransforme;
 }
+/*
 var test4 = ["1", "3", "5", "+", "4", "5", "-", "1", "8", "9", "="];
 var test5 = calcul(test4);
 console.log(test5);
 console.log(test5.indexOf("+"));
-
+*/
 // rechercher les information de cliquage
 var messageEcran = document.getElementById("ecran");
 var touchescliquees = "";
@@ -183,6 +187,8 @@ for (var bn of bns) {
     messageEcran.innerHTML = touchescliquees;
     var entree = touchescliquees.split("");
     console.log(entree);
+    var fin = pemdas((calcul(entree)));
+    console.log(fin);
   });
 }
 
