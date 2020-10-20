@@ -3,41 +3,59 @@
 }
 body {
   margin: 0;
+  background-image: url(fond.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 section {
   width: 320px;
-  background-color: gray;
+  background-color: #858b88;
   padding: 20px;
-  height: 320px;
+  padding-top: 30px;
+  height: 420px;
   margin: auto;
-  margin-top: 50px;
+  margin-top: 70px;
+  border: 3px solid #444847;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px 0px rgba(2, 2, 3, 0.8);
 }
 #ecran {
   width: 270px;
   height: 60px;
-  background-color: white;
+  background-color: #f2f5f9;
+  border-radius: 10px;
+  border-top: 4px solid rgba(2, 2, 3, 0.6);
+  border-left: 4px solid rgba(2, 2, 3, 0.6);
+  overflow: auto;
+  line-height: 60px;
 }
 #boutons {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding-top: 5px;
 }
 #siglesMathematiques {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 80px;
-  height: 200px;
+  height: 300px;
   margin-top: 25px;
 }
 button {
-  height: 40px;
+  height: 60px;
   width: 60px;
   margin-bottom: 10px;
   margin-right: 10px;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  font-size: 150%;
 }
 .operations {
-  background-color: green;
+  background-color: #ccaf02;
   color: white;
 }
 #boutonsChiffres {
@@ -49,10 +67,9 @@ button {
   height: 210px;
   margin-top: 25px;
 }
-
 .nombre {
-  background-color: blue;
-  color: white;
+  background-color: #fcefcf;
+  color: #020203;
 }
 #particuliers {
   display: flex;
@@ -62,9 +79,18 @@ button {
   width: 240px;
   height: 60px;
 }
-.clear {
-  background-color: yellow;
-}
+.clear,
 .egal {
-  background-color: orange;
+  background-color: #8c6a03;
+  color: white;
+}
+span {
+  position: absolute;
+  margin: 10px;
+  bottom: 0;
+  right: 0;
+  font-size: 60%;
+}
+a {
+  color: #444847;
 }
