@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable no-param-reassign */
 var nombres = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var operations = ["+", "-", "*", "/"];
 
@@ -19,7 +21,7 @@ var chiffres = document.getElementById("chiffres");
 chiffres.innerHTML = numHTML;
 
 // derniers boutons
-var parHTML="<button class='bn clear' id='clear'>C</button><button class='bn nombre' id='0'>"+ nombres[0] +"</button><button class='bn egal' id='='>=</button>";
+var parHTML = `<button class='bn clear' id='clear'>C</button><button class='bn nombre' id='0'>${nombres[0]}</button><button class='bn egal' id='='>=</button>`;
 
 var particuliers = document.getElementById("particuliers");
 particuliers.innerHTML = parHTML;
@@ -34,9 +36,9 @@ function transform(arrayTypeString) {
 
   var nombre = 0;
   for (var nmbr of arrayTypeNumber) {
-    var nombre = nombre * 10 + nmbr;
+    nombre = nombre * 10 + nmbr;
   }
-  return(nombre);
+  return (nombre);
 }
 
 // fonction qui calcule
@@ -60,60 +62,60 @@ function calculElemeantaire(nombre1, operation, nombre2) {
 
 // calcul pemdas d'un array nombre type number avec operations
 function pemdas(array) {
-  for (var j = 0; j < array.length / 2; j++) {
+  for (var k = 0; k < array.length / 2; k++) {
     // multiplication
-    var indice = array.indexOf("*");
-    console.log(indice);
-    if (indice !== -1) {
-      var calc = calculElemeantaire(array[indice - 1], "*", array[indice + 1]);
-      console.log(calc);
-      array[indice-1] = calc;
+    var indiceMult = array.indexOf("*");
+    console.log(indiceMult);
+    if (indiceMult !== -1) {
+      var calcMult = calculElemeantaire(array[indiceMult - 1], "*", array[indiceMult + 1]);
+      console.log(calcMult);
+      array[indiceMult - 1] = calcMult;
       console.log(array);
-      test9 = array.splice(indice-1, 2);
-      console.log(test9);
-      array[indice-1] = calc;
+      var elRetMult = array.splice(indiceMult - 1, 2);
+      console.log(elRetMult);
+      array[indiceMult - 1] = calcMult;
     }
   }
-  for (var j = 0; j < array.length / 2; j++) {
+  for (var m = 0; m < array.length / 2; m++) {
     // division
-    var indice = array.indexOf("/");
-    console.log(indice);
-    if (indice !== -1) {
-      var calc = calculElemeantaire(array[indice - 1], "/", array[indice + 1]);
-      console.log(calc);
-      array[indice - 1] = calc;
+    var indiceDiv = array.indexOf("/");
+    console.log(indiceDiv);
+    if (indiceDiv !== -1) {
+      var calcDiv = calculElemeantaire(array[indiceDiv - 1], "/", array[indiceDiv + 1]);
+      console.log(calcDiv);
+      array[indiceDiv - 1] = calcDiv;
       console.log(array);
-      test9 = array.splice(indice - 1, 2);
-      console.log(test9);
-      array[indice - 1] = calc;
+      var elRetDiv = array.splice(indiceDiv - 1, 2);
+      console.log(elRetDiv);
+      array[indiceDiv - 1] = calcDiv;
     }
   }
-  for (var j = 0; j < array.length / 2; j++) {
+  for (var n = 0; n < array.length / 2; n++) {
     // somme
-    var indice = array.indexOf("+");
-    console.log(indice);
-    if (indice !== -1) {
-      var calc = calculElemeantaire(array[indice - 1], "+", array[indice + 1]);
-      console.log(calc);
-      array[indice - 1] = calc;
+    var indicePlus = array.indexOf("+");
+    console.log(indicePlus);
+    if (indicePlus !== -1) {
+      var calcPlus = calculElemeantaire(array[indicePlus - 1], "+", array[indicePlus + 1]);
+      console.log(calcPlus);
+      array[indicePlus - 1] = calcPlus;
       console.log(array);
-      test9 = array.splice(indice - 1, 2);
-      console.log(test9);
-      array[indice - 1] = calc;
+      var elRetPlus = array.splice(indicePlus - 1, 2);
+      console.log(elRetPlus);
+      array[indicePlus - 1] = calcPlus;
     }
   }
-  for (var j = 0; j < array.length / 2; j++) {
+  for (var p = 0; p < array.length / 2; p++) {
     // soustraction
     var indice = array.indexOf("-");
     console.log(indice);
     if (indice !== -1) {
-      var calc = calculElemeantaire(array[indice - 1],"-", array[indice + 1]);
-      console.log(calc);
-      array[indice-1] = calc;
+      var calcSous = calculElemeantaire(array[indice - 1], "-", array[indice + 1]);
+      console.log(calcSous);
+      array[indice - 1] = calcSous;
       console.log(array);
-      test9 = array.splice(indice-1, 2);
-      console.log(test9);
-      array[indice - 1] = calc;
+      var elRetsous = array.splice(indice - 1, 2);
+      console.log(elRetsous);
+      array[indice - 1] = calcSous;
     }
   }
   console.log(array);
@@ -121,6 +123,9 @@ function pemdas(array) {
   console.log(calculFait);
   return calculFait;
 }
+var test6 = [136, "*", 45, "-", 125, "*", 223, "/", 12, "+", 45];
+var test7 = test6.indexOf("*");
+console.log(test7);
 var test8 = pemdas(test6);
 console.log(test8);
 
@@ -133,11 +138,10 @@ function calcul(arrayTypeString) {
     if (element === "0" || element === "1" || element === "2" || element === "3" || element === "4" || element === "5" || element === "6" || element === "7" || element === "8" || element === "9") {
       partieDeArray.push(element);
       // console.log(partieDeArray);
-    }
-    else if (element === "+" || element === "-" || element === "*" || element === "/" || element === "=") {
-      var test6 = transform(partieDeArray);
-      console.log(test6);
-      arraytransforme[indice] = test6;
+    } else if (element === "+" || element === "-" || element === "*" || element === "/" || element === "=") {
+      var test10 = transform(partieDeArray);
+      console.log(test10);
+      arraytransforme[indice] = test10;
       indice++;
       // console.log(arraytransforme);
       arraytransforme[indice] = element;
@@ -153,10 +157,6 @@ var test5 = calcul(test4);
 console.log(test5);
 console.log(test5.indexOf("+"));
 
-var test6 = [136, "*", 45, "-", 125, "*", 223, "/", 12, "+", 45];
-var test7 = test6.indexOf("*");
-console.log(test7);
-
 // rechercher les information de cliquage
 var messageEcran = document.getElementById("ecran");
 var touchescliquees = "";
@@ -166,17 +166,16 @@ for (var bn of bns) {
   bn.addEventListener("click", (e) => {
     if (e.target.id === "clear") {
       touchescliquees = "";
-    }
-    else if (e.target.id === "*" || e.target.id === "/" || e.target.id === "+" || e.target.id === "-" || e.target.id === "=") {
+    } else if (e.target.id === "*" || e.target.id === "/" || e.target.id === "+" || e.target.id === "-" || e.target.id === "=") {
       if (doubleOperation === true) {
         touchescliquees = "";
-        alert("Erreur: ne pas rentrer deux opérations consecutives");
+        console.log("Erreur: ne pas rentrer deux opérations consecutives");
+        // consolelog à changer...
       } else {
         touchescliquees += e.target.id;
         doubleOperation = true;
       }
-    }
-    else {
+    } else {
       touchescliquees += e.target.id;
       doubleOperation = false;
     }
