@@ -27,7 +27,6 @@ var particuliers = document.getElementById("particuliers");
 particuliers.innerHTML = parHTML;
 
 // transformation array de nombres de type string vers une array de nombres de type number
-// utilisée dans la fonction calcul
 function transform(arrayTypeString) {
   var arrayTypeNumber = [];
   for (var chiffre of arrayTypeString) {
@@ -42,7 +41,7 @@ function transform(arrayTypeString) {
   return (nombre);
 }
 
-// fonction qui calcule, utilisée dans la fonction Pemdas
+// fonction qui calcule
 function calculElemeantaire(nombre1, operation, nombre2) {
   var reponse;
   switch (operation) {
@@ -121,10 +120,29 @@ function pemdas(array) {
   }
   console.log(array);
   var calculFait = array[0].toFixed(4);
-  console.log(calculFait);
+  calculFait = parseFloat(calculFait);
+  console.log(typeof calculFait);
   return calculFait;
 }
+
+
 /*
+
+var x = 1.500;
+var noZeroes = x.toString();
+console.log(noZeroes);
+
+function decimalesOuPas(nombre3) {
+  var regex = /[0]$/;
+  if (regex.test(array[0]) === 0) {
+    var calculFait = array[0].toFixed();
+  } else{
+    var calculFait = array[0].toFixed(4);
+  }
+  return calculFait;
+}
+var test9 = 456.0000;
+console.log(decimalesOuPas(test9));
 var test6 = [136, "*", 45, "-", 125, "*", 223, "/", 12, "+", 45];
 var test7 = test6.indexOf("*");
 console.log(test7);
@@ -170,7 +188,7 @@ for (var bn of bns) {
   bn.addEventListener("click", (e) => {
     if (e.target.id === "clear") {
       touchescliquees = "";
-    } else if (e.target.id === "*" || e.target.id === "/" || e.target.id === "+" || e.target.id === "-" || e.target.id === "=") {
+    } else if (e.target.id === "*" || e.target.id === "/" || e.target.id === "+" || e.target.id === "-") {
       if (doubleOperation === true) {
         touchescliquees = "";
         console.log("Erreur: ne pas rentrer deux opérations consecutives");
@@ -179,20 +197,40 @@ for (var bn of bns) {
         touchescliquees += e.target.id;
         doubleOperation = true;
       }
+    } else if (e.target.id === "=") {
+      if (doubleOperation === true) {
+        touchescliquees = "";
+        console.log("Erreur: ne pas rentrer deux opérations consecutives");
+        // consolelog à changer...
+      } else {
+        touchescliquees += e.target.id;
+        var entree = touchescliquees.split("");
+        console.log(entree);
+        var fin = pemdas((calcul(entree)));
+        console.log(fin);
+      }
     } else {
       touchescliquees += e.target.id;
       doubleOperation = false;
     }
     // console.log(touchescliquees);
     messageEcran.innerHTML = touchescliquees;
-    var entree = touchescliquees.split("");
-    console.log(entree);
-    var fin = pemdas((calcul(entree)));
-    console.log(fin);
   });
 }
 
 /*
+function decimalesOuPas(nombre3) {
+  var regex = /[0]$/;
+  var retour2 = nombre3;
+  if (regex.test(nombre3) === 0) {
+    nombre3.toFixed();
+    retour2 = nombre3.toFixed();
+  }
+  return retour2;
+}
+var test9 = 456.1200;
+console.log(decimalesOuPas(test9));
+
 function suite(array){
     i = 0;
     for(elmnt of array){
