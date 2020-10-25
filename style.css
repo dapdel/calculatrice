@@ -27,7 +27,7 @@ section {
   border-radius: 10px;
   border-top: 4px solid rgba(2, 2, 3, 0.6);
   border-left: 4px solid rgba(2, 2, 3, 0.6);
-  overflow: auto;
+  overflow: visible;
   line-height: 60px;
 }
 #boutons {
