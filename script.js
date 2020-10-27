@@ -3,6 +3,12 @@
 var nombres = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 var operations = ["+", "-", "*", "/"];
 
+var messageEcran = document.getElementById("calcul");
+var resultat = document.getElementById("resultat");
+var touchescliquees = "";
+var doubleOperation = false;
+var bns = document.getElementsByClassName("bn");
+
 // boutons opération
 var opHTML = "";
 for (var i = 0; i < 4; i++) {
@@ -32,12 +38,15 @@ function transform(arrayTypeString) {
   for (var chiffre of arrayTypeString) {
     var chiffreTypeNumber = parseInt(chiffre);
     arrayTypeNumber.push(chiffreTypeNumber);
+    
   }
 
   var nombre = 0;
   for (var nmbr of arrayTypeNumber) {
     nombre = nombre * 10 + nmbr;
+    
   }
+ 
   return (nombre);
 }
 
@@ -55,38 +64,46 @@ function calculElemeantaire(nombre1, operation, nombre2) {
       reponse = nombre1 * nombre2;
       break;
     default:
+      if (nombre2===0){
+        touchescliquees = "Erreur: division par 0";
+        messageEcran.innerHTML = touchescliquees;
+        touchescliquees = "";
+      } else{
       reponse = nombre1 / nombre2;
+    }
   }
+  console.log(reponse);
   return reponse;
 }
 
 // calcul pemdas d'un array nombre type number avec operations
 function pemdas(array) {
+  console.log(array);
   for (var k = 0; k < array.length / 2; k++) {
     // multiplication
     var indiceMult = array.indexOf("*");
-    console.log(indiceMult);
+    //console.log(indiceMult);
     if (indiceMult !== -1) {
       var calcMult = calculElemeantaire(array[indiceMult - 1], "*", array[indiceMult + 1]);
-      console.log(calcMult);
+      //console.log(nombre);
       array[indiceMult - 1] = calcMult;
-      console.log(array);
+      //console.log(array);
       var elRetMult = array.splice(indiceMult - 1, 2);
-      console.log(elRetMult);
+      //console.log(elRetMult);
       array[indiceMult - 1] = calcMult;
     }
   }
   for (var m = 0; m < array.length / 2; m++) {
     // division
     var indiceDiv = array.indexOf("/");
-    console.log(indiceDiv);
+    //console.log(indiceDiv);
     if (indiceDiv !== -1) {
       var calcDiv = calculElemeantaire(array[indiceDiv - 1], "/", array[indiceDiv + 1]);
-      console.log(calcDiv);
+      //console.log(calcDiv);
       array[indiceDiv - 1] = calcDiv;
-      console.log(array);
+      //console.log(array);
       var elRetDiv = array.splice(indiceDiv - 1, 2);
-      console.log(elRetDiv);
+      //console.log(elRetDiv);
       array[indiceDiv - 1] = calcDiv;
     }
   }
@@ -100,6 +117,7 @@ function pemdas(array) {
       array[indicePlus - 1] = calcPlus;
       console.log(array);
       var elRetPlus = array.splice(indicePlus - 1, 2);
+    /////// C ici qu'il y a un bug!!!/////
       console.log(elRetPlus);
       array[indicePlus - 1] = calcPlus;
     }
@@ -107,21 +125,28 @@ function pemdas(array) {
   for (var p = 0; p < array.length / 2; p++) {
     // soustraction
     var indice = array.indexOf("-");
-    console.log(indice);
+    //console.log(indice);
     if (indice !== -1) {
       var calcSous = calculElemeantaire(array[indice - 1], "-", array[indice + 1]);
-      console.log(calcSous);
+      //console.log(calcSous);
       array[indice - 1] = calcSous;
-      console.log(array);
+      //console.log(array);
       var elRetsous = array.splice(indice - 1, 2);
-      console.log(elRetsous);
+      //console.log(elRetsous);
       array[indice - 1] = calcSous;
     }
   }
   console.log(array);
   var calculFait = array[0].toFixed(4);
   calculFait = parseFloat(calculFait);
-  console.log(typeof calculFait);
+  //console.log(typeof calculFait);
+  if(calculFait===NaN){
+    touchescliquees = "Erreur: division par 0";
+    messageEcran.innerHTML = touchescliquees;
+    touchescliquees = "";
+    calculFait = "";
+  }
+  console.log(calculFait);
   return calculFait;
 }
 
@@ -161,7 +186,7 @@ function calcul(arrayTypeString) {
       // console.log(partieDeArray);
     } else if (element === "+" || element === "-" || element === "*" || element === "/" || element === "=") {
       var test10 = transform(partieDeArray);
-      console.log(test10);
+      //console.log(test10);
       arraytransforme[indice] = test10;
       indice++;
       // console.log(arraytransforme);
@@ -171,6 +196,7 @@ function calcul(arrayTypeString) {
     }
   }
   arraytransforme.pop();
+  console.log(arraytransforme);
   return arraytransforme;
 }
 /*
@@ -180,18 +206,18 @@ console.log(test5);
 console.log(test5.indexOf("+"));
 */
 // rechercher les information de cliquage
-var messageEcran = document.getElementById("ecran");
-var touchescliquees = "";
-var doubleOperation = false;
-var bns = document.getElementsByClassName("bn");
+
 for (var bn of bns) {
   bn.addEventListener("click", (e) => {
     if (e.target.id === "clear") {
       touchescliquees = "";
+      fin = "";
+      resultat.innerHTML = fin;
     } else if (e.target.id === "*" || e.target.id === "/" || e.target.id === "+" || e.target.id === "-") {
       if (doubleOperation === true) {
-        touchescliquees = "";
-        console.log("Erreur: ne pas rentrer deux opérations consecutives");
+        touchescliquees = "Erreur: 2 opérations consecutives !";
+        messageEcran.innerHTML = touchescliquees;
+        doubleOperation = false;
         // consolelog à changer...
       } else {
         touchescliquees += e.target.id;
@@ -199,15 +225,16 @@ for (var bn of bns) {
       }
     } else if (e.target.id === "=") {
       if (doubleOperation === true) {
-        touchescliquees = "";
-        console.log("Erreur: ne pas rentrer deux opérations consecutives");
-        // consolelog à changer...
+        touchescliquees = "Erreur: 2 opérations consecutives !";
+        messageEcran.innerHTML = touchescliquees;
+        doubleOperation = false;
       } else {
         touchescliquees += e.target.id;
         var entree = touchescliquees.split("");
         console.log(entree);
         var fin = pemdas((calcul(entree)));
         console.log(fin);
+        resultat.innerHTML = fin;
       }
     } else {
       touchescliquees += e.target.id;
