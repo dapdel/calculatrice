@@ -190,7 +190,6 @@ for (var bn of bns) {
         resultatFinal = pemdas((calcul(entree)));
         console.log(resultatFinal);
         resultat.innerHTML = resultatFinal;
-
       }
     } else {
       touchescliquees += e.target.id;
